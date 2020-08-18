@@ -7,11 +7,19 @@ const typeDefs = graphql`
   type Query {
     sayHi: String!
   }
+  type Mutation {
+    sayHiTo(name: String!): String!
+  }
 `;
 
 const resolvers = {
   Query: {
     sayHi: () => "Hello",
+  },
+  Mutation: {
+    sayHiTo: (_, { name }) => {
+      return `hi ${name}`;
+    },
   },
 };
 const server = new ApolloServer({
